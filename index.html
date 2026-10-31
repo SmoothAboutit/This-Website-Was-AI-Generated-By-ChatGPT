@@ -18,12 +18,41 @@
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.place{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .25s,border-color .25s}.place:hover{transform:translateY(-5px);border-color:rgba(183,216,197,.42)}.place-img{height:205px;position:relative;background:#26323c center/cover}.tag{position:absolute;top:14px;left:14px;background:rgba(16,21,29,.78);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:10px;letter-spacing:.08em;text-transform:uppercase}.save{position:absolute;right:13px;top:12px;width:35px;height:35px;border:1px solid rgba(255,255,255,.35);background:rgba(16,21,29,.65);color:white;border-radius:50%;font-size:17px}.save.saved{color:#ffb7bd;background:#332127}.place-body{padding:18px 19px 20px}.place-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.place h3{font:500 23px/1.2 "Playfair Display",serif;margin:0}.country{color:var(--muted);font-size:11px;margin-top:5px}.season{font-size:10px;color:var(--gold);white-space:nowrap;padding-top:4px}.place-desc{font-size:12px;color:var(--muted);min-height:40px;margin:15px 0}.place-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:13px;font-size:11px;color:var(--muted)}.place-foot strong{color:var(--mint);font-weight:600}.empty{grid-column:1/-1;text-align:center;padding:55px 20px;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius)}
     .quote{padding:58px 0 72px;border-top:1px solid var(--line);text-align:center}.quote blockquote{font:500 clamp(25px,3.5vw,39px)/1.35 "Playfair Display",serif;max-width:760px;margin:17px auto 20px}.quote small{color:var(--muted);font-size:11px;letter-spacing:.13em;text-transform:uppercase}.newsletter{background:#1c2b2b;border:1px solid rgba(183,216,197,.2);border-radius:28px;padding:38px;display:flex;justify-content:space-between;align-items:center;gap:25px;margin-bottom:75px}.newsletter h2{font:500 29px "Playfair Display",serif;margin:0 0 6px}.newsletter p{margin:0;color:#b7c4bd;font-size:13px}.newsletter-form{display:flex;gap:8px;min-width:min(390px,100%)}.newsletter-form input{min-width:0;flex:1;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.15);border-radius:999px;padding:12px 15px;color:white;outline:none}.newsletter-form button{border:0;border-radius:999px;padding:0 18px;background:var(--mint);color:#15221c;font-weight:700;font-size:12px}.footer{border-top:1px solid var(--line);padding:25px 0 34px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:15px}.footer a{color:var(--mint);text-decoration:none}
     .toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#e9f3ed;color:#14221b;border-radius:999px;padding:11px 18px;font-size:12px;font-weight:700;transition:.25s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
+
+    /* Minimal AI disclaimer entry screen */
+    body.entry-locked{overflow:hidden}
+    .entry-gate{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:28px;background:#f5f5f0;color:#202820;overflow-y:auto}
+    .entry-gate[hidden]{display:none}
+    .entry-inner{width:min(100%,470px);text-align:center;padding:34px 24px}
+    .entry-symbol{width:48px;height:48px;margin:0 auto 34px;border:1px solid #c6d2c8;border-radius:50%;display:grid;place-items:center;color:#668875;font-size:22px}
+    .entry-kicker{font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#718477}
+    .entry-gate h1{font:500 clamp(36px,7vw,52px)/1.08 "Playfair Display",serif;letter-spacing:-.035em;margin:17px 0 18px;color:#202820}
+    .entry-gate p{max-width:390px;margin:0 auto;color:#68736b;font-size:14px;line-height:1.85}
+    .entry-rule{width:38px;height:1px;background:#c5d1c7;margin:28px auto}
+    .entry-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-width:190px;margin-top:27px;padding:14px 23px;border:0;border-radius:999px;background:#263b30;color:#fff;font-size:13px;font-weight:600;transition:background .2s,transform .2s}
+    .entry-button:hover{background:#385544;transform:translateY(-2px)}
+    .entry-button:focus-visible{outline:3px solid #8aa995;outline-offset:4px}
+    .entry-foot{display:block;margin-top:20px;color:#929b93;font-size:10px;letter-spacing:.04em}
+
     @media(max-width:850px){.hero{grid-template-columns:1fr;gap:32px;padding-top:60px}.hero-art{height:330px}.grid{grid-template-columns:repeat(2,1fr)}.newsletter{align-items:flex-start;flex-direction:column}.newsletter-form{width:100%}}
     @media(max-width:560px){.shell{width:min(100% - 32px,1160px)}.nav{height:68px}.nav-right{gap:12px}.nav-right a:first-child{display:none}.hero{padding:48px 0 40px}.hero h1{font-size:52px}.hero-art{height:260px}.section-head{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.place-img{height:220px}.discover{padding-bottom:60px}.newsletter{padding:26px 21px}.newsletter-form{flex-direction:column}.newsletter-form button{padding:12px}.footer{flex-direction:column}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
-<body>
+<body class="entry-locked">
+
+  <section class="entry-gate" id="entryGate" role="dialog" aria-modal="true" aria-labelledby="entryTitle" aria-describedby="entryDescription">
+    <div class="entry-inner">
+      <div class="entry-symbol" aria-hidden="true">✳</div>
+      <div class="entry-kicker">Before you wander</div>
+      <h1 id="entryTitle">A little note<br>before you enter.</h1>
+      <p id="entryDescription">Midnight Atlas was created with the help of artificial intelligence. That means some text, details or recommendations may be inaccurate or incomplete. Please use your own judgement when relying on anything you find here.</p>
+      <div class="entry-rule" aria-hidden="true"></div>
+      <p>This is an independent creative project, made for curiosity and exploration. It is not a professional travel or booking service.</p>
+      <button class="entry-button" id="understandButton" type="button">I Understand <span aria-hidden="true">↗</span></button>
+      <span class="entry-foot">A small project, made with AI and a little imagination.</span>
+    </div>
+  </section>
   <header class="shell nav">
     <a class="brand" href="#" aria-label="Midnight Atlas home"><span class="brand-mark">✳</span> MIDNIGHT ATLAS</a>
     <nav class="nav-right"><a href="#discover">Explore</a><a href="#about">Our philosophy</a><a href="#newsletter">Get inspired ↗</a></nav>
@@ -83,6 +112,14 @@
     document.querySelector("#surpriseTop").addEventListener("click",surprise);
     document.querySelector("#subscribe").addEventListener("submit",e=>{e.preventDefault();notify("Lovely. This demo doesn't send or store emails yet.");e.target.reset()});
     render();
+    // Require an explicit acknowledgement on every fresh page load.
+    const entryGate=document.querySelector("#entryGate");
+    const understandButton=document.querySelector("#understandButton");
+    understandButton.focus();
+    understandButton.addEventListener("click",()=>{
+      entryGate.hidden=true;
+      document.body.classList.remove("entry-locked");
+    });
   </script>
 </body>
 </html>
